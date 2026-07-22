@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp;
+
+    fp = fopen("sample.txt", "w");
+
+    if(fp == NULL)
+    {
+        printf("File cannot be created.");
+        return 1;
+    }
+
+    fprintf(fp, "Hello, Welcome to C Programming!");
+
+    fclose(fp);
+
+    printf("Data written successfully.");
+
+    return 0;
+}
+Sample Output
+Data written successfully.
+
+Content of sample.txt:
+
+Hello, Welcome to C Programming!
