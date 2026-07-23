@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+struct Student
+{
+    int roll;
+    char name[30];
+    float marks;
+};
+
+int main()
+{
+    FILE *fp;
+    struct Student s;
+
+    fp = fopen("student.dat", "wb");
+
+    if(fp == NULL)
+    {
+        printf("Cannot create file.");
+        return 1;
+    }
+
+    printf("Enter Roll Name Marks: ");
+    scanf("%d %s %f", &s.roll, s.name, &s.marks);
+
+    fwrite(&s, sizeof(struct Student), 1, fp);
+
+    fclose(fp);
+
+    printf("Record saved successfully.");
+
+    return 0;
+}
+Sample Output
+Enter Roll Name Marks:
+101 Rahul 89.5
+
+Record saved successfully.
