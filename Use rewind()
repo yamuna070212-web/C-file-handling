@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp;
+    char ch;
+
+    fp = fopen("sample.txt", "r");
+
+    if(fp == NULL)
+    {
+        printf("File not found.");
+        return 1;
+    }
+
+    fgetc(fp);
+    fgetc(fp);
+
+    printf("Position = %ld\n", ftell(fp));
+
+    rewind(fp);
+
+    printf("Position After Rewind = %ld", ftell(fp));
+
+    fclose(fp);
+
+    return 0;
+}
+Sample Output
+Position = 2
+Position After Rewind = 0
