@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    FILE *fp;
+    int roll, r;
+    char name[30];
+    float marks;
+    int found = 0;
+
+    fp = fopen("student.txt", "r");
+
+    if(fp == NULL)
+    {
+        printf("File not found.");
+        return 1;
+    }
+
+    printf("Enter Roll Number to Search: ");
+    scanf("%d", &roll);
+
+    while(fscanf(fp, "%d %s %f", &r, name, &marks) != EOF)
+    {
+        if(r == roll)
+        {
+            printf("%d %s %.2f", r, name, marks);
+            found = 1;
+            break;
+        }
+    }
+
+    if(!found)
+        printf("Record Not Found");
+
+    fclose(fp);
+
+    return 0;
+}
+Sample Output
+Enter Roll Number to Search:
+102
+
+102 Priya 91.00
