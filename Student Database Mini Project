@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+struct Student
+{
+    int roll;
+    char name[30];
+    float marks;
+};
+
+int main()
+{
+    FILE *fp;
+    struct Student s;
+
+    fp = fopen("student.txt", "a");
+
+    if(fp == NULL)
+    {
+        printf("File Error");
+        return 1;
+    }
+
+    printf("Enter Roll Name Marks: ");
+    scanf("%d %s %f", &s.roll, s.name, &s.marks);
+
+    fprintf(fp, "%d %s %.2f\n", s.roll, s.name, s.marks);
+
+    fclose(fp);
+
+    printf("Student Record Added Successfully.");
+
+    return 0;
+}
+Sample Output
+Enter Roll Name Marks:
+101 Rahul 89.5
+
+Student Record Added Successfully.
