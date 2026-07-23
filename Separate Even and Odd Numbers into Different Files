@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp, *even, *odd;
+    int num;
+
+    fp = fopen("numbers.txt", "r");
+    even = fopen("even.txt", "w");
+    odd = fopen("odd.txt", "w");
+
+    if(fp == NULL)
+    {
+        printf("File Error");
+        return 1;
+    }
+
+    while(fscanf(fp, "%d", &num) != EOF)
+    {
+        if(num % 2 == 0)
+            fprintf(even, "%d\n", num);
+        else
+            fprintf(odd, "%d\n", num);
+    }
+
+    fclose(fp);
+    fclose(even);
+    fclose(odd);
+
+    printf("Numbers Separated.");
+
+    return 0;
+}
+Sample Output
+Numbers Separated.
