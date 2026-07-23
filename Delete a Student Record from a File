@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp, *temp;
+    int roll, r;
+    char name[30];
+    float marks;
+
+    fp = fopen("student.txt", "r");
+    temp = fopen("temp.txt", "w");
+
+    if(fp == NULL || temp == NULL)
+    {
+        printf("File Error");
+        return 1;
+    }
+
+    printf("Enter Roll Number to Update: ");
+    scanf("%d", &roll);
+
+    while(fscanf(fp, "%d %s %f", &r, name, &marks) != EOF)
+    {
+        if(r == roll)
+        {
+            printf("Enter New Marks: ");
+            scanf("%f", &marks);
+        }
+
+        fprintf(temp, "%d %s %.2f\n", r, name, marks);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("student.txt");
+    rename("temp.txt", "student.txt");
+
+    printf("Record Updated.");
+
+    return 0;
+}
+Sample Output
+Enter Roll Number to Update: 101
+Enter New Marks: 95
+
+Record Updated.
