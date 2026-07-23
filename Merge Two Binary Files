@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp1, *fp2, *fp3;
+    char ch;
+
+    fp1 = fopen("a.dat", "rb");
+    fp2 = fopen("b.dat", "rb");
+    fp3 = fopen("merge.dat", "wb");
+
+    if(fp1 == NULL || fp2 == NULL || fp3 == NULL)
+    {
+        printf("File Error");
+        return 1;
+    }
+
+    while(fread(&ch, 1, 1, fp1))
+        fwrite(&ch, 1, 1, fp3);
+
+    while(fread(&ch, 1, 1, fp2))
+        fwrite(&ch, 1, 1, fp3);
+
+    fclose(fp1);
+    fclose(fp2);
+    fclose(fp3);
+
+    printf("Binary Files Merged.");
+
+    return 0;
+}
+Sample Output
+Binary Files Merged.
