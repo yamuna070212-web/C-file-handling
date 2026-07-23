@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp1, *fp2;
+    char ch;
+
+    fp1 = fopen("student.dat", "rb");
+    fp2 = fopen("backup.dat", "wb");
+
+    if(fp1 == NULL || fp2 == NULL)
+    {
+        printf("Error opening file.");
+        return 1;
+    }
+
+    while(fread(&ch, sizeof(char), 1, fp1))
+    {
+        fwrite(&ch, sizeof(char), 1, fp2);
+    }
+
+    fclose(fp1);
+    fclose(fp2);
+
+    printf("Binary file copied successfully.");
+
+    return 0;
+}
+Sample Output
+Binary file copied successfully.
